@@ -24,7 +24,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                         <Typography color='textSecondary' gutterBottom>
                             Infected
                         </Typography>
-                        <Typography variant='h5'>
+                        <Typography variant='h4'>
                             <CountUp
                                 start={0}
                                 end={confirmed.value}
@@ -36,7 +36,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                             {new Date(lastUpdate).toDateString()}
                         </Typography>
                         <Typography variant='body2'>
-                            Number of active COVID19 cases.
+                            Active COVID19 cases.
                         </Typography>
                     </CardContent>
                 </Grid>
@@ -52,7 +52,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                         <Typography color='textSecondary' gutterBottom>
                             Recovered
                         </Typography>
-                        <Typography variant='h5'>
+                        <Typography variant='h4'>
                             <CountUp
                                 start={0}
                                 end={recovered.value}
@@ -60,11 +60,24 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                                 separator=','
                             />
                         </Typography>
+                        <Typography variant='h6'>
+                            <CountUp
+                                start={0}
+                                end={
+                                    ((recovered.value * 1.0) /
+                                        confirmed.value) *
+                                    100
+                                }
+                                duration={2.5}
+                                separator=','
+                            />
+                            %
+                        </Typography>
                         <Typography color='textSecondary'>
                             {new Date(lastUpdate).toDateString()}
                         </Typography>
                         <Typography variant='body2'>
-                            Number of recoveries from COVID19.
+                            Recovered COVID19 cases.
                         </Typography>
                     </CardContent>
                 </Grid>
@@ -80,7 +93,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                         <Typography color='textSecondary' gutterBottom>
                             Deaths
                         </Typography>
-                        <Typography variant='h5'>
+                        <Typography variant='h4'>
                             <CountUp
                                 start={0}
                                 end={deaths.value}
@@ -88,11 +101,23 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                                 separator=','
                             />
                         </Typography>
+                        <Typography variant='h5'>
+                            <CountUp
+                                start={0}
+                                end={
+                                    ((deaths.value * 1.0) / confirmed.value) *
+                                    100
+                                }
+                                duration={2.5}
+                                separator=','
+                            />
+                            %
+                        </Typography>
                         <Typography color='textSecondary'>
                             {new Date(lastUpdate).toDateString()}
                         </Typography>
                         <Typography variant='body2'>
-                            Number of deaths causes by COVID19.
+                            Deaths by COVID19.
                         </Typography>
                     </CardContent>
                 </Grid>
